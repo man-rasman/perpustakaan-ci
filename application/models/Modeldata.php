@@ -50,7 +50,7 @@ class Modeldata extends CI_Model{
             'penulis_buku'  => $this->input->post('penulis_buku',    TRUE),
             'penerbit_buku' => $this->input->post('penerbit_buku',   TRUE),
             'isi_buku'      => $this->input->post('isi_buku',    TRUE),
-            'keterangan'    => $this->input->post('keterangan', TRUE)
+            'keterangan'    => $this->input->post('keterangan_buku', TRUE)
         );
         return $this->db->insert('tabel_buku',$simpanbuku);
     }
