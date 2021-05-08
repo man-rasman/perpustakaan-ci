@@ -1,47 +1,65 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Welcome extends CI_Controller {
+	function __construct() {
+		parent::__construct();
+		$this->load->model('Modeldata');
+		
+	}
+
 	public function index()
 	{
-		$this->load->view('login');
-	}
-	public function index2()
-	{
-		$this->load->view('daftar');
-	}
-	public function index3()
-	{
-		$this->load->view('beranda');
-	}
-
-
-	public function Login()
-	{
-		$username = $this->input->post('username', TRUE);
-		$password = $this->input->post('password', TRUE);
-		$this->db->where('username',$username);
-		$this->db->where('password',$password);
-		$cek_login = $this->db->get('tabel_user')->row_array();
-
-		if($cek_login > 0){
-			redirect('Welcome/index3');
-		}else{
-			echo "
-			<script>
-				window.alert('Username atau password salah')
-				window.location='../../';
-			</script>";
-		}
-	}
-	public function Logout()
-	{
-		redirect('../');
+		$this->load->view('form_login');
 	}
 	public function Daftar()
+    {
+        $this->Modeldata->user_daftar();
+        redirect('form_daftar');
+    }
+	public function Beranda()
+    {
+        if ($this->session->userdata('status')=="login") {
+
+			$data['data_beranda']	=	$this->Modeldata->get_data_beranda();
+            $this->load->view('beranda',$data);
+
+        }else{
+			redirect(base_url());
+		}
+    }
+	public function Kategori()
 	{
-		$this->load->model('Modeldata');
-		$this->Modeldata->daftar();
-		redirect('Welcome/index2');
+		if ($this->session->userdata('status')=="login") {
+			
+			$data['data_kategori']	=	$this->Modeldata->get_data_kategori();
+			$this->load->view('beranda',$data);
+
+		}else{
+				redirect(base_url());
+			}
 	}
+	public function Pustaka()
+	{
+		if ($this->session->userdata('status')=="login") {
+
+			$data['data_buku']	=	$this->Modeldata->get_data_buku();
+			$this->load->view('beranda',$data);
+
+		}else{
+				redirect(base_url());
+			}
+	}
+
+	public function Cari()
+	{
+		if ($this->session->userdata('status')=="login") {
+
+			$data = $this->Modeldata->ambil_katakunci();
+			$this->load->view('beranda',$data);
+
+		}else{
+			redirect(base_url());
+		}
+	}
+
+	
 }
