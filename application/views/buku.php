@@ -29,7 +29,7 @@ if ($this->session->userdata('data') != "masuk") {
                     echo "<td>$tampilkan->penerbit_buku</td>";
                     echo "<td class='bg-info'>$tampilkan->isi_buku</td>";
                     echo "<td>$tampilkan->keterangan</td>";
-                    echo "<td><a href='Editbuku/$tampilkan->id_buku'><button class='btn btn-success btn-xs'>Edit</button></a><button class='btn btn-danger btn-xs ' onclick='hapus($tampilkan->id_buku)'>Hapus</button></td>";
+                    echo "<td class='col-md-2 text-center'><a href='Editbuku/$tampilkan->id_buku'><button class='btn btn-success btn-xs'>Edit</button></a><button class='btn btn-danger btn-xs ' onclick='hapus($tampilkan->id_buku)'>Hapus</button></td>";
                 echo "</tr>";
             }
             ?>
@@ -49,29 +49,12 @@ if ($this->session->userdata('data') != "masuk") {
                                 <option value="fiksi">Fiksi</option>
                                 <option value="non fiksi">Non Fiksi</option>
                             </select>
-            Penulis         <input class="form-control" type="text" name="penulis">
-            Penerbit        <input class="form-control" type="text" name="penerbit">
-            Isi buku        
-            <div class="box box-info">
-            <div class="box-header">
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                  <i class="fa fa-minus"></i></button>
-                
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body pad">
-                <textarea class="textarea" placeholder="Tulis teks di sini"
-                          style="outline: none; width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                          <input type="submit" value="simpan" class="btn btn-primary pull-right">
-            </div>
-          </div>
-        </div>
-
+            Penulis         <input class="form-control" type="text" name="penulis_buku">
+            Penerbit        <input class="form-control" type="text" name="penerbit_buku">
+            Isi buku        <input class="form-control" type="text" name="isi_buku">
+            Keterangan        <input class="form-control" type="text" name="keterangan_buku"><br>
+                              <input type="submit" value="simpan" class="btn btn-primary pull-right btn-md">
+          </form>
         <!-- Js -->
 <script>
 function hapus(id){
